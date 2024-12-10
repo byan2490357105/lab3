@@ -3,7 +3,7 @@
 void IDatabase::initDatabase()
 {
     database=QSqlDatabase::addDatabase("QSQLITE");
-    QString aFile="E:/Qt project/lab3.db";
+    QString aFile="C:/Users/Lenovo/Desktop/Qt/database/lab4.db";
     database.setDatabaseName(aFile);
     if(!database.open()){
         qDebug()<<"failed to open database";
