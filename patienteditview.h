@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include<QDataWidgetMapper>
+#include"idatabase.h"
 namespace Ui {
 class patientEditview;
 }

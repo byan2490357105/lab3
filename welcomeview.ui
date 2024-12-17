@@ -47,9 +47,9 @@
        <item>
         <layout class="QHBoxLayout" name="horizontalLayout">
          <item>
-          <widget class="QPushButton" name="Department">
+          <widget class="QPushButton" name="Medical">
            <property name="text">
-            <string>科室管理</string>
+            <string>药品管理</string>
            </property>
           </widget>
          </item>
@@ -83,6 +83,13 @@
         </spacer>
        </item>
       </layout>
+     </item>
+     <item>
+      <widget class="QPushButton" name="History">
+       <property name="text">
+        <string>历史管理</string>
+       </property>
+      </widget>
      </item>
      <item>
       <spacer name="verticalSpacer_2">

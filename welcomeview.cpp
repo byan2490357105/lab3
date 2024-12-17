@@ -1,5 +1,7 @@
 #include "welcomeview.h"
 #include "ui_welcomeview.h"
+#include"idatabase.h"
+#include<QMessageBox>
 
 Welcome::Welcome(QWidget *parent)
     : QWidget(parent)
@@ -16,20 +18,30 @@ Welcome::~Welcome()
 
 
 
-void Welcome::on_Department_clicked()
+void Welcome::on_Medical_clicked()
 {
-    emit goDepartmentView();
+    emit goMedicalView();
 }
 
 
 void Welcome::on_Doctor_clicked()
 {
-    emit goDoctorView();
+    if(IDatabase::getInstance().isadmin)
+        emit goDoctorView();
+    else
+        QMessageBox::information(this,"登录提示消息框","您不是admin用户，无权查看",
+                                 QMessageBox::Ok,QMessageBox::NoButton);
 }
 
 
 void Welcome::on_Patient_clicked()
 {
     emit goPatientView();
+}
+
+
+void Welcome::on_History_clicked()
+{
+    emit goHistoryView();
 }
 

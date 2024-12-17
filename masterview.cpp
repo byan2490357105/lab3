@@ -19,17 +19,6 @@ MasterView::~MasterView()
     delete ui;
 }
 
-void MasterView::goDepartmentView()
-{
-    departmentView = new departmentview(this);
-    pushWidgetToStackView(departmentView);
-}
-
-void MasterView::goDoctorView()
-{
-    doctorView = new doctorview(this);
-    pushWidgetToStackView(doctorView);
-}
 
 void MasterView::goLoginView()
 {
@@ -63,7 +52,8 @@ void MasterView::goWelcomeView()
 
     connect(welcomeView,SIGNAL(goDoctorView()),this,SLOT(goDoctorView()));
     connect(welcomeView,SIGNAL(goPatientView()),this,SLOT(goPatientView()));
-    connect(welcomeView,SIGNAL(goDepartmentView()),this,SLOT(goDepartmentView()));
+    connect(welcomeView,SIGNAL(goMedicalView()),this,SLOT(goMedicalView()));
+    connect(welcomeView,SIGNAL(goHistoryView()),this,SLOT(goHistoryView()));
 }
 
 void MasterView::goPreviousView()
@@ -76,6 +66,51 @@ void MasterView::goPreviousView()
         ui->stackedWidget->removeWidget(widget);
         delete widget;
     }
+}
+
+void MasterView::goDoctorView()
+{
+    doctorView = new doctorview(this);
+    pushWidgetToStackView(doctorView);
+
+    connect(doctorView,SIGNAL(goDoctorEditView(int)),this,SLOT(goDoctorEditView(int)));
+}
+
+void MasterView::goDoctorEditView(int rowNo)
+{
+    doctoreditView = new doctorEditview(this,rowNo);
+    pushWidgetToStackView(doctoreditView);
+    connect(doctoreditView,SIGNAL(goPreviousView()),this,SLOT(goPreviousView()));
+}
+
+void MasterView::goMedicalView()
+{
+    medicalView = new medicalview(this);
+    pushWidgetToStackView(medicalView);
+
+    connect(medicalView,SIGNAL(goMedicalEditView(int)),this,SLOT(goMedicalEditView(int)));
+}
+
+void MasterView::goMedicalEditView(int rowNo)
+{
+    medicaleditView = new medicalEditview(this,rowNo);
+    pushWidgetToStackView(medicaleditView);
+    connect(medicaleditView,SIGNAL(goPreviousView()),this,SLOT(goPreviousView()));
+}
+
+void MasterView::goHistoryView()
+{
+    historyView = new historyview(this);
+    pushWidgetToStackView(historyView);
+
+    connect(historyView,SIGNAL(goHistoryEditView(int)),this,SLOT(goHistoryEditView(int)));
+}
+
+void MasterView::goHistoryEditView(int rowNo)
+{
+    historyeditView =new historyEditview(this,rowNo);
+    pushWidgetToStackView(historyeditView);
+    connect(historyeditView,SIGNAL(goPreviousView()),this,SLOT(goPreviousView()));
 }
 
 void MasterView::pushWidgetToStackView(QWidget *widget)

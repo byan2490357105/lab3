@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>doctorview</class>
- <widget class="QWidget" name="doctorview">
+ <class>historyview</class>
+ <widget class="QWidget" name="historyview">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>医生管理</string>
+   <string>历史管理</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
@@ -19,7 +19,7 @@
      <item>
       <widget class="QLineEdit" name="lineEdit">
        <property name="placeholderText">
-        <string>请输入医生名进行查找</string>
+        <string>请输入病人名进行查找</string>
        </property>
       </widget>
      </item>
@@ -64,6 +64,31 @@
        <property name="icon">
         <iconset resource="rsc.qrc">
          <normaloff>:/img/modify.svg</normaloff>:/img/modify.svg</iconset>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout_2">
+     <item>
+      <widget class="QPushButton" name="btIn">
+       <property name="text">
+        <string>导入</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="btOut">
+       <property name="text">
+        <string>导出</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="sortByTime">
+       <property name="text">
+        <string>按时间日期降序排序</string>
        </property>
       </widget>
      </item>
