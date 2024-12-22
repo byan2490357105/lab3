@@ -18,7 +18,7 @@ bool IDatabase::initPatientModel()
     PatientTabModel=new QSqlTableModel(this,database);
     PatientTabModel->setTable("Patient");
     PatientTabModel->setEditStrategy(QSqlTableModel::OnManualSubmit);
-    PatientTabModel->setSort(PatientTabModel->fieldIndex("NAME"),Qt::AscendingOrder);
+    PatientTabModel->setSort(PatientTabModel->fieldIndex("CREATEDTIMESTAMP"),Qt::AscendingOrder);
     if(!(PatientTabModel->select()))
         return false;
     thePatientSelection=new QItemSelectionModel(PatientTabModel);
@@ -67,7 +67,7 @@ bool IDatabase::initDoctorModel()
     DoctorTabModel=new QSqlTableModel(this,database);
     DoctorTabModel->setTable("Doctor");
     DoctorTabModel->setEditStrategy(QSqlTableModel::OnManualSubmit);
-    DoctorTabModel->setSort(DoctorTabModel->fieldIndex("NAME"),Qt::AscendingOrder);
+    DoctorTabModel->setSort(DoctorTabModel->fieldIndex("ID"),Qt::AscendingOrder);
     if(!(DoctorTabModel->select()))
         return false;
     theDoctorSelection=new QItemSelectionModel(DoctorTabModel);
@@ -112,7 +112,7 @@ bool IDatabase::initMedicalModel()
     MedicalTabModel=new QSqlTableModel(this,database);
     MedicalTabModel->setTable("Medical");
     MedicalTabModel->setEditStrategy(QSqlTableModel::OnManualSubmit);
-    MedicalTabModel->setSort(MedicalTabModel->fieldIndex("NAME"),Qt::AscendingOrder);
+    MedicalTabModel->setSort(MedicalTabModel->fieldIndex("NUMBER"),Qt::AscendingOrder);
     if(!(MedicalTabModel->select()))
         return false;
     theMedicalSelection=new QItemSelectionModel(MedicalTabModel);

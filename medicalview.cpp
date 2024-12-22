@@ -1,6 +1,7 @@
 #include "medicalview.h"
 #include "ui_medicalview.h"
 #include"idatabase.h"
+#include"fileAModel.h"
 
 medicalview::medicalview(QWidget *parent)
     : QWidget(parent)
@@ -49,5 +50,37 @@ void medicalview::on_btEdit_clicked()
 {
     QModelIndex curIndex=IDatabase::getInstance().theMedicalSelection->currentIndex();
     emit goMedicalEditView(curIndex.row());
+}
+
+
+void medicalview::on_btIn_clicked()
+{
+    FileIn(this,IDatabase::getInstance().MedicalTabModel);
+}
+
+
+void medicalview::on_btOut_clicked()
+{
+    FileOut(this,IDatabase::getInstance().MedicalTabModel);
+}
+
+
+void medicalview::on_sortByNum_clicked()
+{
+    QPushButton* btn=(QPushButton*)sender();
+    QString btnObj= ((QPushButton*)sender())->text(); //获取按钮txt文字
+    QSqlTableModel *theModel=IDatabase::getInstance().MedicalTabModel;
+    qDebug()<<"now button:"<<btnObj;
+    if(btnObj=="按照排库存数升序")
+    {
+        btn->setText("按照排库存数降序");
+        theModel->setSort(theModel->fieldIndex("NUMBER"),Qt::AscendingOrder);
+    }
+    else
+    {
+        btn->setText("按照排库存数升序");
+        theModel->setSort(theModel->fieldIndex("NUMBER"),Qt::DescendingOrder);
+    }
+    theModel->select();
 }
 

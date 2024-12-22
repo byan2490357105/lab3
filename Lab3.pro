@@ -11,6 +11,7 @@ CONFIG += c++17
 SOURCES += \
     doctoreditview.cpp \
     doctorview.cpp \
+    fileAModel.cpp \
     historyeditview.cpp \
     historyview.cpp \
     idatabase.cpp \
@@ -26,6 +27,7 @@ SOURCES += \
 HEADERS += \
     doctoreditview.h \
     doctorview.h \
+    fileAModel.h \
     historyeditview.h \
     historyview.h \
     idatabase.h \

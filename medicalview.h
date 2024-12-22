@@ -24,6 +24,12 @@ private slots:
 
     void on_btEdit_clicked();
 
+    void on_btIn_clicked();
+
+    void on_btOut_clicked();
+
+    void on_sortByNum_clicked();
+
 private:
     Ui::medicalview *ui;
 

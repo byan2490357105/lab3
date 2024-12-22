@@ -1,6 +1,7 @@
 #include "patientview.h"
 #include "ui_patientview.h"
 #include"idatabase.h"
+#include"fileAModel.h"
 
 
 patientview::patientview(QWidget *parent)
@@ -52,5 +53,37 @@ void patientview::on_btEdit_clicked()
     QModelIndex curIndex=IDatabase::getInstance().thePatientSelection->currentIndex();
     emit goPatientEditView(curIndex.row());
 
+}
+
+
+void patientview::on_btIn_clicked()
+{
+    FileIn(this,IDatabase::getInstance().PatientTabModel);
+}
+
+
+void patientview::on_btOut_clicked()
+{
+    FileOut(this,IDatabase::getInstance().PatientTabModel);
+}
+
+
+void patientview::on_sortByTime_clicked()
+{
+    QPushButton* btn=(QPushButton*)sender();
+    QString btnObj= ((QPushButton*)sender())->text(); //获取按钮txt文字
+    QSqlTableModel *theModel=IDatabase::getInstance().PatientTabModel;
+    qDebug()<<"now button:"<<btnObj;
+    if(btnObj=="按照就诊时间升序")
+    {
+        btn->setText("按照就诊时间降序");
+        theModel->setSort(theModel->fieldIndex("CREATEDTIMESTAMP"),Qt::AscendingOrder);
+    }
+    else
+    {
+        btn->setText("按照就诊时间升序");
+        theModel->setSort(theModel->fieldIndex("CREATEDTIMESTAMP"),Qt::DescendingOrder);
+    }
+    theModel->select();
 }
 

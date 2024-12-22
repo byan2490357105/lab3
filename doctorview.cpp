@@ -1,6 +1,7 @@
 #include "doctorview.h"
 #include "ui_doctorview.h"
 #include"idatabase.h"
+#include"fileAModel.h"
 
 doctorview::doctorview(QWidget *parent)
     : QWidget(parent)
@@ -44,5 +45,37 @@ void doctorview::on_btEdit_clicked()
 {
     QModelIndex curIndex=IDatabase::getInstance().theDoctorSelection->currentIndex();
     emit goDoctorEditView(curIndex.row());
+}
+
+
+void doctorview::on_btIn_clicked()
+{
+    FileIn(this,IDatabase::getInstance().DoctorTabModel);
+}
+
+
+void doctorview::on_btOut_clicked()
+{
+    FileOut(this,IDatabase::getInstance().DoctorTabModel);
+}
+
+
+void doctorview::on_sortByID_clicked()
+{
+    QPushButton* btn=(QPushButton*)sender();
+    QString btnObj= ((QPushButton*)sender())->text(); //获取按钮txt文字
+    QSqlTableModel *theModel=IDatabase::getInstance().DoctorTabModel;
+    qDebug()<<"now button:"<<btnObj;
+    if(btnObj=="按照ID升序")
+    {
+        btn->setText("按照ID降序");
+        theModel->setSort(theModel->fieldIndex("ID"),Qt::AscendingOrder);
+    }
+    else
+    {
+        btn->setText("按照ID升序");
+        theModel->setSort(theModel->fieldIndex("ID"),Qt::DescendingOrder);
+    }
+    theModel->select();
 }
 

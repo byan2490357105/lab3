@@ -24,6 +24,12 @@ private slots:
 
     void on_btEdit_clicked();
 
+    void on_btIn_clicked();
+
+    void on_btOut_clicked();
+
+    void on_sortByTime_clicked();
+
 signals:
     void goPatientEditView(int idx);
 
