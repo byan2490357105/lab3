@@ -21,6 +21,23 @@ patientview::patientview(QWidget *parent)
         ui->tableView->setModel(iDatabase.PatientTabModel);
         ui->tableView->setSelectionModel(iDatabase.thePatientSelection);
     }
+    pagelimit=4;//暂时将每页查询设置为4
+    int row=iDatabase.PatientTabModel->rowCount();//查询总行数
+    page=1;
+    if(row%pagelimit==0)
+        pagetotal=row/pagelimit;
+    else
+        pagetotal=row/pagelimit+1;
+    pagestart=(page-1)*pagelimit;
+    qDebug()<<"limit:"<<pagelimit<<"total:"<<pagetotal;
+    iDatabase.searchPatientByPage(pagestart,pagelimit);
+}
+
+void patientview::changePage()
+{
+    IDatabase &iDatabase=IDatabase::getInstance();
+    pagestart=(page-1)*pagelimit;
+    iDatabase.searchPatientByPage(pagestart,pagelimit);
 }
 
 patientview::~patientview()
@@ -37,8 +54,9 @@ void patientview::on_btAdd_clicked()
 
 void patientview::on_btSearch_clicked()
 {
+    page=1;
     QString filter=QString("name like '%%1%'").arg(ui->lineEdit->text());
-    IDatabase::getInstance().searchPatient(filter);
+    IDatabase::getInstance().searchPatient(filter,pagestart,pagelimit);
 }
 
 
@@ -85,5 +103,23 @@ void patientview::on_sortByTime_clicked()
         theModel->setSort(theModel->fieldIndex("CREATEDTIMESTAMP"),Qt::DescendingOrder);
     }
     theModel->select();
+}
+
+
+void patientview::on_btLPage_clicked()
+{
+    if(page>1)
+        page--;
+    qDebug()<<"now page"<<page;
+    changePage();
+}
+
+
+void patientview::on_btNPage_clicked()
+{
+    if(page<pagetotal)
+        page++;
+    qDebug()<<"now page"<<page;
+    changePage();
 }
 

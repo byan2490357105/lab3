@@ -25,10 +25,23 @@ bool IDatabase::initPatientModel()
     return true;
 }
 
-bool IDatabase::searchPatient(QString filter)
+void IDatabase::searchPatientByPage(int start, int limit)
 {
-    PatientTabModel->setFilter(filter);
-    return PatientTabModel->select();
+    QString queryStr = QString("SELECT * FROM Patient LIMIT %1 OFFSET %2")
+        .arg(limit)
+        .arg(start);
+     PatientTabModel->setQuery(queryStr,database);
+}
+
+bool IDatabase::searchPatient(QString filter, int start, int limit)
+{
+    QString queryStr = QString("SELECT * FROM Patient WHERE %1 LIMIT %2 OFFSET %3")
+    .arg(filter)
+        .arg(limit)
+        .arg(start);
+    PatientTabModel->setQuery(queryStr,database);
+    // PatientTabModel->setFilter(filter);
+    // return PatientTabModel->select();
 }
 
 int IDatabase::addNewPatient()

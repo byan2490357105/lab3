@@ -36,7 +36,8 @@ signals:
 
 public:
     bool initPatientModel();
-    bool searchPatient(QString filter);
+    void searchPatientByPage(int start,int limit);
+    bool searchPatient(QString filter,int start,int limit);
     int addNewPatient();
     bool deleteCurrentPatient();
     bool submitPatientEdit();
