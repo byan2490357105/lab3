@@ -17,7 +17,9 @@ public:
     int pagestart;//记录到的查询开始行数,limit是从第几行+到第几+pagelimit行
     int pagetotal;//记录总页数
     int pagelimit;//设置查询条数
+    int maxrow;//保存select count(*)的值，为刷新pagetotal用
     void changePage();
+    void initPage();
     ~patientview();
 
 private slots:

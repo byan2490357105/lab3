@@ -35,7 +35,7 @@ void IDatabase::searchPatientByPage(int start, int limit)
 
 bool IDatabase::searchPatient(QString filter, int start, int limit)
 {
-    QString queryStr = QString("SELECT * FROM Patient WHERE %1 LIMIT %2 OFFSET %3")
+    QString queryStr = QString("SELECT * FROM Patient WHERE name like '%1' LIMIT %2 OFFSET %3")
     .arg(filter)
         .arg(limit)
         .arg(start);
@@ -62,7 +62,8 @@ bool IDatabase::deleteCurrentPatient()
     QModelIndex curIndex=thePatientSelection->currentIndex();
     PatientTabModel->removeRow(curIndex.row());
     PatientTabModel->submitAll();
-    PatientTabModel->select();
+    // PatientTabModel->select();
+
 }
 
 bool IDatabase::submitPatientEdit()
