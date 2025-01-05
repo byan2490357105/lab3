@@ -25,11 +25,18 @@ private slots:
 
     void on_History_clicked();
 
+    void on_MedicalCount_clicked();
+
+    void on_DateReport_clicked();
+
 signals:
     void goMedicalView();
     void goDoctorView();
     void goPatientView();
     void goHistoryView();
+    void goMedicalCountView();
+    void goDateReportView();
+    void goUserReportView(int index);
 
 private:
     Ui::Welcome *ui;

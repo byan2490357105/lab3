@@ -12,6 +12,9 @@
 #include"medicalview.h"
 #include"historyeditview.h"
 #include"historyview.h"
+#include"medicalcountview.h"
+#include"datereportview.h"
+#include"userreportview.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -38,6 +41,9 @@ public slots:
     void goMedicalEditView(int rowNo);
     void goHistoryView();
     void goHistoryEditView(int rowNo);
+    void goMedicalCountView();
+    void goDateReportView();
+    void goUserReportView(int rowNo);
 
 
 private slots:
@@ -63,6 +69,9 @@ private:
     medicalEditview *medicaleditView;
     historyview *historyView;
     historyEditview *historyeditView;
+    medicalCountview *medicalcountView;
+    dateReportview *datereportView;
+    userReportview *userreportView;
 
 };
 #endif // MASTERVIEW_H

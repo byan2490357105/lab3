@@ -45,3 +45,22 @@ void Welcome::on_History_clicked()
     emit goHistoryView();
 }
 
+
+void Welcome::on_MedicalCount_clicked()
+{
+    emit goMedicalCountView();
+}
+
+
+void Welcome::on_DateReport_clicked()
+{
+    if(IDatabase::getInstance().isadmin)
+        emit goDateReportView();
+    else{
+        if(IDatabase::getInstance().initReportModel()){
+
+        }
+        emit goUserReportView(IDatabase::getInstance().addNewReport());
+    }
+}
+

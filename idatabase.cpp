@@ -211,6 +211,53 @@ void IDatabase::revertHistoryEdit()
     return HistoryTabModel->revertAll();
 }
 
+bool IDatabase::initReportModel()
+{
+    if(ReportTabModel!=NULL)
+        return true;
+    ReportTabModel=new QSqlTableModel(this,database);
+    ReportTabModel->setTable("DateReport");
+    ReportTabModel->setEditStrategy(QSqlTableModel::OnManualSubmit);
+    ReportTabModel->setSort(ReportTabModel->fieldIndex("TIMESTAMP"),Qt::AscendingOrder);
+    if(!(ReportTabModel->select()))
+        return false;
+    theReportSelection=new QItemSelectionModel(ReportTabModel);
+    return true;
+}
+
+bool IDatabase::searchReport(QString filter)
+{
+    ReportTabModel->setFilter(filter);
+    return ReportTabModel->select();
+}
+
+int IDatabase::addNewReport()
+{
+    ReportTabModel->insertRow(ReportTabModel->rowCount(),QModelIndex());
+    QModelIndex curIndex=ReportTabModel->index(ReportTabModel->rowCount()-1,1);
+    int curRecNo=curIndex.row();
+
+    return curIndex.row();
+}
+
+bool IDatabase::deleteCurrentReport()
+{
+    QModelIndex curIndex=theReportSelection->currentIndex();
+    ReportTabModel->removeRow(curIndex.row());
+    ReportTabModel->submitAll();
+    ReportTabModel->select();
+}
+
+bool IDatabase::submitReportEdit()
+{
+    return ReportTabModel->submitAll();
+}
+
+void IDatabase::revertReportEdit()
+{
+    return ReportTabModel->revertAll();
+}
+
 QString IDatabase::userLogin(QString userName, QString password)
 {
     QSqlQuery query;
@@ -225,8 +272,7 @@ QString IDatabase::userLogin(QString userName, QString password)
                 isadmin=true;
             else
                 isadmin=false;
-            qDebug()<<userName;
-            qDebug()<<isadmin;
+            usern=userName;
             return "LoginOk";
         }
         else{

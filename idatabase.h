@@ -20,6 +20,7 @@ public:
         return instance;
     }
     bool isadmin;//判断登录用户是否是admin，有关是否能查看医生列表
+    QString usern;
     QString userLogin(QString userName,QString password);
 
 private:
@@ -64,6 +65,13 @@ public:
     bool submitHistoryEdit();
     void revertHistoryEdit();
 
+    bool initReportModel();
+    bool searchReport(QString filter);
+    int addNewReport();
+    bool deleteCurrentReport();
+    bool submitReportEdit();
+    void revertReportEdit();
+
 
     QSqlTableModel *PatientTabModel;
     QItemSelectionModel *thePatientSelection;
@@ -76,6 +84,9 @@ public:
 
     QSqlTableModel *HistoryTabModel;
     QItemSelectionModel *theHistorySelection;
+
+    QSqlTableModel *ReportTabModel=NULL;
+    QItemSelectionModel *theReportSelection;
 
 };
 

@@ -96,6 +96,9 @@
          </item>
          <item>
           <widget class="QLineEdit" name="InputPassword">
+           <property name="text">
+            <string>123456</string>
+           </property>
            <property name="echoMode">
             <enum>QLineEdit::EchoMode::Password</enum>
            </property>

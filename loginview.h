@@ -14,7 +14,6 @@ class LoginView : public QWidget
 public:
     explicit LoginView(QWidget *parent = nullptr);
     ~LoginView();
-    bool isadmin;//验证是否有权限查看医生界面
 
 private slots:
     void on_btSignIn_clicked();
