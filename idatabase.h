@@ -72,6 +72,10 @@ public:
     bool submitReportEdit();
     void revertReportEdit();
 
+    bool initArrangeModel();
+    bool submitArrangeEdit();
+    void revertArrangeEdit();
+
 
     QSqlTableModel *PatientTabModel;
     QItemSelectionModel *thePatientSelection;
@@ -88,6 +92,8 @@ public:
     QSqlTableModel *ReportTabModel=NULL;
     QItemSelectionModel *theReportSelection;
 
+    QSqlTableModel *ArrangeTabModel=NULL;
+    QItemSelectionModel *theArrangeSelection;
 };
 
 #endif // IDATABASE_H

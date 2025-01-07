@@ -57,6 +57,7 @@ void MasterView::goWelcomeView()
     connect(welcomeView,SIGNAL(goMedicalCountView()),this,SLOT(goMedicalCountView()));
     connect(welcomeView,SIGNAL(goDateReportView()),this,SLOT(goDateReportView()));
     connect(welcomeView,SIGNAL(goUserReportView(int)),this,SLOT(goUserReportView(int)));
+    connect(welcomeView,SIGNAL(goDoctorArrangeView()),this,SLOT(goDoctorArrangeView()));
 }
 
 void MasterView::goPreviousView()
@@ -138,6 +139,13 @@ void MasterView::goUserReportView(int rowNo)
     userreportView =new userReportview(this,rowNo);
     pushWidgetToStackView(userreportView);
     connect(userreportView,SIGNAL(goPreviousView()),this,SLOT(goPreviousView()));
+}
+
+void MasterView::goDoctorArrangeView()
+{
+    doctorarrangeView=new doctorArrangeview(this);
+    pushWidgetToStackView(doctorarrangeView);
+    connect(doctorarrangeView,SIGNAL(goPreviousView()),this,SLOT(goPreviousView()));
 }
 
 void MasterView::pushWidgetToStackView(QWidget *widget)

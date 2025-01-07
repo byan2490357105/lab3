@@ -218,7 +218,7 @@ bool IDatabase::initReportModel()
     ReportTabModel=new QSqlTableModel(this,database);
     ReportTabModel->setTable("DateReport");
     ReportTabModel->setEditStrategy(QSqlTableModel::OnManualSubmit);
-    ReportTabModel->setSort(ReportTabModel->fieldIndex("TIMESTAMP"),Qt::AscendingOrder);
+    ReportTabModel->setSort(ReportTabModel->fieldIndex("DATE"),Qt::AscendingOrder);
     if(!(ReportTabModel->select()))
         return false;
     theReportSelection=new QItemSelectionModel(ReportTabModel);
@@ -256,6 +256,27 @@ bool IDatabase::submitReportEdit()
 void IDatabase::revertReportEdit()
 {
     return ReportTabModel->revertAll();
+}
+
+bool IDatabase::initArrangeModel()
+{
+    ArrangeTabModel=new QSqlTableModel(this,database);
+    ArrangeTabModel->setTable("DoctorArrange");
+    ArrangeTabModel->setEditStrategy(QSqlTableModel::OnManualSubmit);
+    if(!(ArrangeTabModel->select()))
+        return false;
+    theArrangeSelection=new QItemSelectionModel(ArrangeTabModel);
+    return true;
+}
+
+bool IDatabase::submitArrangeEdit()
+{
+    return ArrangeTabModel->submitAll();
+}
+
+void IDatabase::revertArrangeEdit()
+{
+    return ArrangeTabModel->revertAll();
 }
 
 QString IDatabase::userLogin(QString userName, QString password)

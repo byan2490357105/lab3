@@ -100,6 +100,13 @@
      <item>
       <layout class="QHBoxLayout" name="horizontalLayout_3">
        <item>
+        <widget class="QPushButton" name="DoctorArrange">
+         <property name="text">
+          <string>医生安排</string>
+         </property>
+        </widget>
+       </item>
+       <item>
         <widget class="QPushButton" name="History">
          <property name="text">
           <string>历史管理</string>

@@ -64,3 +64,9 @@ void Welcome::on_DateReport_clicked()
     }
 }
 
+
+void Welcome::on_DoctorArrange_clicked()
+{
+    emit goDoctorArrangeView();
+}
+

@@ -10,6 +10,7 @@ CONFIG += c++17
 
 SOURCES += \
     datereportview.cpp \
+    doctorarrangeview.cpp \
     doctoreditview.cpp \
     doctorview.cpp \
     fileAModel.cpp \
@@ -29,6 +30,7 @@ SOURCES += \
 
 HEADERS += \
     datereportview.h \
+    doctorarrangeview.h \
     doctoreditview.h \
     doctorview.h \
     fileAModel.h \
@@ -47,6 +49,7 @@ HEADERS += \
 
 FORMS += \
     datereportview.ui \
+    doctorarrangeview.ui \
     doctoreditview.ui \
     doctorview.ui \
     historyeditview.ui \

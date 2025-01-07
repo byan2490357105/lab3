@@ -29,6 +29,8 @@ private slots:
 
     void on_DateReport_clicked();
 
+    void on_DoctorArrange_clicked();
+
 signals:
     void goMedicalView();
     void goDoctorView();
@@ -37,6 +39,7 @@ signals:
     void goMedicalCountView();
     void goDateReportView();
     void goUserReportView(int index);
+    void goDoctorArrangeView();
 
 private:
     Ui::Welcome *ui;
